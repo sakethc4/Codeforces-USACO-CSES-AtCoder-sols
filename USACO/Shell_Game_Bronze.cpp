@@ -18,7 +18,7 @@ using std::vector;
             scanf("%d %d %d", &a, &b, &g);
             // Since we zero index we got to decrement. 
             a --, b--, g--;
-            std::swap(shell_at_pos[a], shell_at_pos[b])
+            std::swap(shell_at_pos[a], shell_at_pos[b]);
             counter[shell_at_pos[g]]++;
         }
         freopen("shell.out", "w", stdout);
