@@ -31,7 +31,7 @@ int main() {
 	while (q--) {
 		long long k;
 		cin >> k;
-		cout << find_digit(k);
+		cout << find_digit(k) << endl;
 	}
 
 	return 0;
