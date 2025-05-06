@@ -1,28 +1,48 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
-int main() {
-    int n, k; 
-    cin >> n >> k;
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++) cin >> arr[i];
+ll solve(vector<ll> arr, ll N, ll K)
+{
 
-    map<int, int> cnt;
-    int ans = 0, r = -1, num = 0;
+    ll left = 0, right = 0;
+    ll distinct_count = 0;
+    ll result = 0;
 
-    for (int l = 0; l < n; l++) {
-        while (r + 1 < n && (num + (cnt[arr[r + 1]] == 0)) <= k) {
-            r++;
-            cnt[arr[r]]++;
-            if (cnt[arr[r]] == 1) num++;
+    unordered_map<ll, ll> frequency;
+
+    while (right < N) {
+        if (frequency.find(arr[right]) == frequency.end()
+            || frequency[arr[right]] == 0)
+            distinct_count++;
+
+        frequency[arr[right]]++;
+
+        while (distinct_count > K) {
+            frequency[arr[left]]--;
+            if (frequency[arr[left]] == 0)
+                distinct_count--;
+            left++;
         }
 
-        ans += (r - l + 1);
+        result += right - left + 1;
 
-        cnt[arr[l]]--;
-        if (cnt[arr[l]] == 0) num--;
+        right++;
     }
 
-    cout << ans << endl;
+    return result;
+}
+
+int main()
+{
+    ll N; cin >> N;
+    ll K; cin >> K;
+    vector<ll> arr(N);
+    for (int i = 0; i < N; i++) {
+        cin >> arr[i];
+    }
+
+    cout << solve(arr, N, K) << "\n";
+
     return 0;
 }
