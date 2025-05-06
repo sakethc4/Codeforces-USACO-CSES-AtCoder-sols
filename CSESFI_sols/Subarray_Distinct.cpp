@@ -38,7 +38,7 @@ int main()
     ll N; cin >> N;
     ll K; cin >> K;
     vector<ll> arr(N);
-    for (int i = 0; i < N; i++) {
+    for (ll i = 0; i < N; i++) {
         cin >> arr[i];
     }
 
